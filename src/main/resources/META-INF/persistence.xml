@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+	http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+  version="2.2">
+
+  <persistence-unit name="MyPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+    <description>My Persistence Unit</description>
+    <provider>org.datanucleus.api.jpa.PersistenceProviderImpl</provider>
+    <class>org.rm3l.sdr_issue_map_deserialization.domain.AbstractBaseJpaEntity</class>
+    <class>org.rm3l.sdr_issue_map_deserialization.domain.Order</class>
+    <class>org.rm3l.sdr_issue_map_deserialization.domain.Item</class>
+
+    <properties>
+      <property name="datanucleus.cache.collections" value="true"/>
+      <property name="datanucleus.jmxType" value="default"/>
+      <property name="datanucleus.cache.collections.lazy" value="false"/>
+      <property name="datanucleus.manageRelationshipsChecks" value="false"/>
+      <property name="datanucleus.rdbms.stringDefaultLength" value="65536"/>
+      <property name="datanucleus.cache.level2.type" value="none"/>
+      <property name="datanucleus.valuegeneration.transactionAttribute" value="EXISTING"/>
+      <property name="datanucleus.schema.validateAll" value="false"/>
+      <property name="datanucleus.persistenceByReachabilityAtCommit" value="false"/>
+      <property name="datanucleus.DetachAllOnRollback" value="false"/>
+      <property name="datanucleus.rdbms.omitDatabaseMetaDataGetColumns" value="true"/>
+      <property name="datanucleus.identifier.case" value="LowerCase"/>
+      <property name="datanucleus.DetachAllOnCommit" value="false"/>
+      <property name="datanucleus.manageRelationships" value="false"/>
+      <property name="datanucleus.connectionPoolingType" value="None"/>
+      <property name="datanucleus.detachAllOnCommit" value="false"/>
+      <property name="datanucleus.rdbms.statementBatchLimit" value="-1"/>
+      <property name="datanucleus.detachedState" value="loaded"/>
+      <property name="datanucleus.schema.autoCreateAll" value="false"/>
+      <property name="datanucleus.flush.optimised" value="true"/>
+    </properties>
+  </persistence-unit>
+
+</persistence>

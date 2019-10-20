@@ -1,0 +1,79 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+    id 'org.rm3l.datanucleus-gradle-plugin' version '1.2.0'
+}
+
+ext {
+    junitJupiterEngineVersion = '5.5.1'
+    junitPlatformVersion = '1.5.1'
+    junitVintageEngineVersion = '5.5.1'
+}
+
+group = 'org.rm3l'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.datanucleus:datanucleus-accessplatform-jpa-rdbms:5.2.1'
+    implementation 'org.datanucleus:javax.persistence:2.2.2'
+    implementation 'org.datanucleus:javax.jdo:3.2.0-m12'
+
+    runtimeOnly 'com.h2database:h2'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version:"${junitJupiterEngineVersion}"
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:"${junitJupiterEngineVersion}"
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version:"${junitJupiterEngineVersion}"
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version:"${junitJupiterEngineVersion}"
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-commons', version:"${junitPlatformVersion}"
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-engine', version:"${junitPlatformVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(Test) { testTask ->
+    ignoreFailures = false
+    // Always try to run all tests for all modules, i.e.
+    // do not fail the 'test' task on the first test failure
+    failFast = false
+    workingDir "${project.buildDir}/run"
+
+    doFirst {
+        mkdir "${project.buildDir}/run"
+    }
+
+    //Propagate System properties starting with 'test.' to Gradle Test worker JVMs
+    systemProperties << System.properties
+            .findAll { it.key.toString().startsWith("test.")}
+            .collectEntries { key, value -> [(key.toString().substring("test.".length())) : value]}
+
+    reports {
+        junitXml.enabled = true
+        html.enabled = true
+    }
+}
+
+datanucleus {
+    enhance {
+        persistenceUnitName 'MyPersistenceUnit'
+    }
+    testEnhance {
+        persistenceUnitName 'MyTestPersistenceUnit'
+    }
+    schemaTool {
+        persistenceUnitName 'MyPersistenceUnit'
+        verbose logger.isEnabled(LogLevel.DEBUG)
+    }
+}

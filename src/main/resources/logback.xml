@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration scan="true">
+
+    <property name="LOG_FILE" value="${catalina.base:-${java.io.tmpdir}${file.separator}temp}${file.separator}logs${file.separator}${project.artifactId}.log"/>
+
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!-- Stop output INFO at start -->
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <jmxConfigurator />
+
+    <logger name="org.rm3l" level="INFO"/>
+
+    <!--<logger name="org.springframework.data.jpa" level="DEBUG"/>-->
+    <!--<logger name="org.springframework.data.rest" level="DEBUG"/>-->
+    <!--<logger name="org.springframework.data.repository" level="DEBUG"/>-->
+    <!--<logger name="org.springframework.data.transaction" level="DEBUG"/>-->
+    <!--<logger name="org.springframework.orm" level="DEBUG"/>-->
+    <!--<logger name="org.springframework.hateoas" level="DEBUG"/>-->
+    <logger name="org.springframework.transaction" level="WARN"/>
+
+    <logger name="DataNucleus" level="WARN"/>
+    <!-- Log of all 'native' statements sent to the datastore -->
+    <logger name="DataNucleus.Datastore.Native" level="WARN"/>
+    <logger name="DataNucleus.Datastore" level="WARN"/>
+    <logger name="DataNucleus.Datastore.Retrieve" level="WARN"/>
+    <logger name="DataNucleus.Datastore.Schema" level="INFO"/>
+    <logger name="DataNucleus.General" level="WARN" />
+    <logger name="DataNucleus.Lifecycle" level="WARN" />
+    <logger name="DataNucleus.ValueGeneration" level="WARN" />
+
+    <logger name="DataNucleus.JPA" level="WARN" />
+    <logger name="org.datanucleus" level="WARN"/>
+    <logger name="DataNucleus.Transaction" level="WARN" />
+    <logger name="DataNucleus.Connection" level="WARN" />
+
+    <logger name="javax.persistence" level="WARN"/>
+
+    <logger name="org.postgresql" level="WARN"/>
+
+    <logger name="ch.qos.logback" level="ERROR" />
+
+    <logger name="com.zaxxer.hikari" level="WARN" />
+
+    <logger name="com.vladmihalcea.flexypool.metric" level="WARN" />
+
+</configuration>
