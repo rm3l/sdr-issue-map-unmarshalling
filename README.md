@@ -1,5 +1,4 @@
-**Link to issue**
-[DATAREST-1441](https://jira.spring.io/browse/DATAREST-1441)
+**Link to issue** : [DATAREST-1441](https://jira.spring.io/browse/DATAREST-1441)
 
 **Notes**
 - Might be related to [DATAREST-960](https://jira.spring.io/browse/DATAREST-960)
