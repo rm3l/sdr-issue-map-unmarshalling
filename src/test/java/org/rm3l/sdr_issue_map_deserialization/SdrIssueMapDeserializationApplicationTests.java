@@ -108,7 +108,7 @@ class SdrIssueMapDeserializationApplicationTests {
             + "\"my_unknown_property\" : \"value for my unknown property\","
             + "\"my_unknown_property2\" : true,"
             + "\"internalId\" : 1000,"
-            + "\"itemMap\" : {"
+            + "\"ItemMap\" : {"
             + "\"key_1\" : {\"itemName\" : \"my item #1\", \"myIntegerAttribute\": 11, \"fake_attr\" : \"does not exist\"}"
             + ","
             + "\"key_2\" : {\"itemName\" : \"my item #2\", \"myIntegerAttribute\": 12}"

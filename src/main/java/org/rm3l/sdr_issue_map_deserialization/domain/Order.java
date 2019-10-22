@@ -26,7 +26,7 @@ public class Order extends AbstractBaseJpaEntity {
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
   @JoinTable(name = "order_item_map")
   @Access(AccessType.PROPERTY)
-  @com.fasterxml.jackson.annotation.JsonProperty("itemMap")
+  @com.fasterxml.jackson.annotation.JsonProperty("ItemMap")
   private Map<String, Item> itemMap;
 
   @com.fasterxml.jackson.annotation.JsonProperty("internalId")
@@ -49,12 +49,12 @@ public class Order extends AbstractBaseJpaEntity {
     this.name = name;
   }
 
-  @com.fasterxml.jackson.annotation.JsonProperty("itemMap")
+  @com.fasterxml.jackson.annotation.JsonProperty("ItemMap")
   public Map<String, Item> getItemMap() {
     return itemMap;
   }
 
-  @com.fasterxml.jackson.annotation.JsonProperty("itemMap")
+  @com.fasterxml.jackson.annotation.JsonProperty("ItemMap")
   public void setItemMap(Map<String, Item> itemMap) {
     this.itemMap = itemMap;
   }
